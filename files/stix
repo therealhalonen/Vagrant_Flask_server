@@ -1,0 +1,11 @@
+server {
+    listen 80;
+    # Change the IP:s here, that you want to expose the service to!
+    # In this Vagrant configurations, these are the same as the ones defined in Vagrant file.
+    server_name 192.168.66.66 192.168.56.66; # Change the IP:s here, that you want to expose the service to!
+
+    location / {
+    	include proxy_params;
+        proxy_pass http://unix:/home/vagrant/stix_project/stix.sock;
+    }
+}

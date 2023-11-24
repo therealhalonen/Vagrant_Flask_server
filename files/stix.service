@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve Stix
+After=network.target
+
+[Service]
+User=vagrant
+Group=www-data
+WorkingDirectory=/home/vagrant/stix_project
+Environment="PATH=/home/vagrant/stix_project/stixenv/bin"
+ExecStart=/home/vagrant/stix_project/stixenv/bin/gunicorn --workers 3 --bind unix:stix.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
